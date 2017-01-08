@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="traveltotemApp.totem.detail.title">Totem</span> {{vm.totem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="traveltotemApp.totem.creationLatitude">Creation Latitude</span></dt>
+        <dd>
+            <span>{{vm.totem.creationLatitude}}</span>
+        </dd>
+        <dt><span data-translate="traveltotemApp.totem.creationLongitude">Creation Longitude</span></dt>
+        <dd>
+            <span>{{vm.totem.creationLongitude}}</span>
+        </dd>
+        <dt><span data-translate="traveltotemApp.totem.createdBy">Created By</span></dt>
+        <dd>
+            {{vm.totem.createdById}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="totem-detail.edit({id:vm.totem.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

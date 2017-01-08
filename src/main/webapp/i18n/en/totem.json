@@ -1,0 +1,24 @@
+{
+    "traveltotemApp": {
+        "totem" : {
+            "home": {
+                "title": "Totems",
+                "createLabel": "Create a new Totem",
+                "createOrEditLabel": "Create or edit a Totem",
+                "search": "Search for Totem"
+            },
+            "created": "A new Totem is created with identifier {{ param }}",
+            "updated": "A Totem is updated with identifier {{ param }}",
+            "deleted": "A Totem is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Totem {{ id }}?"
+            },
+            "detail": {
+                "title": "Totem"
+            },
+            "creationLatitude": "Creation Latitude",
+            "creationLongitude": "Creation Longitude",
+            "createdBy": "Created By"
+        }
+    }
+}

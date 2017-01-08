@@ -1,0 +1,74 @@
+<div>
+    <h2 data-translate="traveltotemApp.transfer.home.title">Transfers</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="transfer.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="traveltotemApp.transfer.home.createLabel">
+                        Create new Transfer
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="latitude"><span data-translate="traveltotemApp.transfer.latitude">Latitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="longitude"><span data-translate="traveltotemApp.transfer.longitude">Longitude</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status"><span data-translate="traveltotemApp.transfer.status">Status</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="date"><span data-translate="traveltotemApp.transfer.date">Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fromUserId"><span data-translate="traveltotemApp.transfer.fromUser">From User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="toUserId"><span data-translate="traveltotemApp.transfer.toUser">To User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="totemId"><span data-translate="traveltotemApp.transfer.totem">Totem</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="transfer in vm.transfers track by transfer.id">
+                    <td><a ui-sref="transfer-detail({id:transfer.id})">{{transfer.id}}</a></td>
+                    <td>{{transfer.latitude}}</td>
+                    <td>{{transfer.longitude}}</td>
+                    <td data-translate="{{'traveltotemApp.TransferStatus.' + transfer.status}}">{{transfer.status}}</td>
+                        <td>{{transfer.date | date:'mediumDate'}}</td>
+                    <td>
+                        {{transfer.fromUserId}}
+                    </td>
+                    <td>
+                        {{transfer.toUserId}}
+                    </td>
+                    <td>
+                        <a ui-sref="totem-detail({id:transfer.totemId})">{{transfer.totemId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="transfer-detail({id:transfer.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="transfer.edit({id:transfer.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="transfer.delete({id:transfer.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

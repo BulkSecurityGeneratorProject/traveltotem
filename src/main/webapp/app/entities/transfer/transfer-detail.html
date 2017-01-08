@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="traveltotemApp.transfer.detail.title">Transfer</span> {{vm.transfer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="traveltotemApp.transfer.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{vm.transfer.latitude}}</span>
+        </dd>
+        <dt><span data-translate="traveltotemApp.transfer.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{vm.transfer.longitude}}</span>
+        </dd>
+        <dt><span data-translate="traveltotemApp.transfer.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'traveltotemApp.TransferStatus.' + vm.transfer.status}}">{{vm.transfer.status}}</span>
+        </dd>
+        <dt><span data-translate="traveltotemApp.transfer.date">Date</span></dt>
+        <dd>
+            <span>{{vm.transfer.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="traveltotemApp.transfer.fromUser">From User</span></dt>
+        <dd>
+            {{vm.transfer.fromUserId}}
+        </dd>
+        <dt><span data-translate="traveltotemApp.transfer.toUser">To User</span></dt>
+        <dd>
+            {{vm.transfer.toUserId}}
+        </dd>
+        <dt><span data-translate="traveltotemApp.transfer.totem">Totem</span></dt>
+        <dd>
+            <a ui-sref="totem-detail({id:vm.transfer.totemId})">{{vm.transfer.totemId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="transfer-detail.edit({id:vm.transfer.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
