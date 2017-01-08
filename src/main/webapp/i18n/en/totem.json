@@ -18,6 +18,7 @@
             },
             "creationLatitude": "Creation Latitude",
             "creationLongitude": "Creation Longitude",
+            "creationDate": "Creation Date",
             "createdBy": "Created By"
         }
     }

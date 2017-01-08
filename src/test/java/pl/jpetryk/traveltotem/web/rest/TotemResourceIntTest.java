@@ -25,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,6 +48,9 @@ public class TotemResourceIntTest {
 
     private static final Double DEFAULT_CREATION_LONGITUDE = 1D;
     private static final Double UPDATED_CREATION_LONGITUDE = 2D;
+
+    private static final LocalDate DEFAULT_CREATION_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATION_DATE = LocalDate.now(ZoneId.systemDefault());
 
     @Inject
     private TotemRepository totemRepository;
@@ -88,7 +93,8 @@ public class TotemResourceIntTest {
     public static Totem createEntity(EntityManager em) {
         Totem totem = new Totem()
                 .creationLatitude(DEFAULT_CREATION_LATITUDE)
-                .creationLongitude(DEFAULT_CREATION_LONGITUDE);
+                .creationLongitude(DEFAULT_CREATION_LONGITUDE)
+                .creationDate(DEFAULT_CREATION_DATE);
         // Add required entity
         User createdBy = UserResourceIntTest.createEntity(em);
         em.persist(createdBy);
@@ -121,6 +127,7 @@ public class TotemResourceIntTest {
         Totem testTotem = totemList.get(totemList.size() - 1);
         assertThat(testTotem.getCreationLatitude()).isEqualTo(DEFAULT_CREATION_LATITUDE);
         assertThat(testTotem.getCreationLongitude()).isEqualTo(DEFAULT_CREATION_LONGITUDE);
+        assertThat(testTotem.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
     }
 
     @Test
@@ -184,6 +191,25 @@ public class TotemResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCreationDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = totemRepository.findAll().size();
+        // set the field null
+        totem.setCreationDate(null);
+
+        // Create the Totem, which fails.
+        TotemDTO totemDTO = totemMapper.totemToTotemDTO(totem);
+
+        restTotemMockMvc.perform(post("/api/totems")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(totemDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Totem> totemList = totemRepository.findAll();
+        assertThat(totemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTotems() throws Exception {
         // Initialize the database
         totemRepository.saveAndFlush(totem);
@@ -194,7 +220,8 @@ public class TotemResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(totem.getId().intValue())))
             .andExpect(jsonPath("$.[*].creationLatitude").value(hasItem(DEFAULT_CREATION_LATITUDE.doubleValue())))
-            .andExpect(jsonPath("$.[*].creationLongitude").value(hasItem(DEFAULT_CREATION_LONGITUDE.doubleValue())));
+            .andExpect(jsonPath("$.[*].creationLongitude").value(hasItem(DEFAULT_CREATION_LONGITUDE.doubleValue())))
+            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())));
     }
 
     @Test
@@ -209,7 +236,8 @@ public class TotemResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(totem.getId().intValue()))
             .andExpect(jsonPath("$.creationLatitude").value(DEFAULT_CREATION_LATITUDE.doubleValue()))
-            .andExpect(jsonPath("$.creationLongitude").value(DEFAULT_CREATION_LONGITUDE.doubleValue()));
+            .andExpect(jsonPath("$.creationLongitude").value(DEFAULT_CREATION_LONGITUDE.doubleValue()))
+            .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()));
     }
 
     @Test
@@ -231,7 +259,8 @@ public class TotemResourceIntTest {
         Totem updatedTotem = totemRepository.findOne(totem.getId());
         updatedTotem
                 .creationLatitude(UPDATED_CREATION_LATITUDE)
-                .creationLongitude(UPDATED_CREATION_LONGITUDE);
+                .creationLongitude(UPDATED_CREATION_LONGITUDE)
+                .creationDate(UPDATED_CREATION_DATE);
         TotemDTO totemDTO = totemMapper.totemToTotemDTO(updatedTotem);
 
         restTotemMockMvc.perform(put("/api/totems")
@@ -245,6 +274,7 @@ public class TotemResourceIntTest {
         Totem testTotem = totemList.get(totemList.size() - 1);
         assertThat(testTotem.getCreationLatitude()).isEqualTo(UPDATED_CREATION_LATITUDE);
         assertThat(testTotem.getCreationLongitude()).isEqualTo(UPDATED_CREATION_LONGITUDE);
+        assertThat(testTotem.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
     }
 
     @Test

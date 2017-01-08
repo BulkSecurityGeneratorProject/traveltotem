@@ -68,7 +68,7 @@ class TotemGatlingTest extends Simulation {
             .exec(http("Create new totem")
             .post("/api/totems")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "creationLatitude":null, "creationLongitude":null}""")).asJSON
+            .body(StringBody("""{"id":null, "creationLatitude":null, "creationLongitude":null, "creationDate":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_totem_url"))).exitHereIfFailed
             .pause(10)

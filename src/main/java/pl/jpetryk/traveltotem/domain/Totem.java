@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -29,6 +30,10 @@ public class Totem implements Serializable {
     @NotNull
     @Column(name = "creation_longitude", nullable = false)
     private Double creationLongitude;
+
+    @NotNull
+    @Column(name = "creation_date", nullable = false)
+    private LocalDate creationDate;
 
     @ManyToOne
     @NotNull
@@ -66,6 +71,19 @@ public class Totem implements Serializable {
 
     public void setCreationLongitude(Double creationLongitude) {
         this.creationLongitude = creationLongitude;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public Totem creationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public User getCreatedBy() {
@@ -107,6 +125,7 @@ public class Totem implements Serializable {
             "id=" + id +
             ", creationLatitude='" + creationLatitude + "'" +
             ", creationLongitude='" + creationLongitude + "'" +
+            ", creationDate='" + creationDate + "'" +
             '}';
     }
 }

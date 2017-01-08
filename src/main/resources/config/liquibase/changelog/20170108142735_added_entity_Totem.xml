@@ -32,6 +32,10 @@
                 <constraints nullable="false" />
             </column>
             
+            <column name="creation_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            
             <column name="created_by_id" type="bigint">
                 <constraints nullable="false" />
             </column>

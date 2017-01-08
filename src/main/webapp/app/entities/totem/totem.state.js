@@ -106,6 +106,7 @@
                             return {
                                 creationLatitude: null,
                                 creationLongitude: null,
+                                creationDate: null,
                                 id: null
                             };
                         }

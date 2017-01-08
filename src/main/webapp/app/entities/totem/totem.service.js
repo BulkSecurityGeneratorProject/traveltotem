@@ -4,9 +4,9 @@
         .module('traveltotemApp')
         .factory('Totem', Totem);
 
-    Totem.$inject = ['$resource'];
+    Totem.$inject = ['$resource', 'DateUtils'];
 
-    function Totem ($resource) {
+    function Totem ($resource, DateUtils) {
         var resourceUrl =  'api/totems/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,11 +16,27 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.creationDate = DateUtils.convertLocalDateFromServer(data.creationDate);
                     }
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': {
+                method: 'PUT',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.creationDate = DateUtils.convertLocalDateToServer(copy.creationDate);
+                    return angular.toJson(copy);
+                }
+            },
+            'save': {
+                method: 'POST',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.creationDate = DateUtils.convertLocalDateToServer(copy.creationDate);
+                    return angular.toJson(copy);
+                }
+            }
         });
     }
 })();

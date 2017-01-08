@@ -1,5 +1,6 @@
 package pl.jpetryk.traveltotem.service.dto;
 
+import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -19,6 +20,9 @@ public class TotemDTO implements Serializable {
 
     @NotNull
     private Double creationLongitude;
+
+    @NotNull
+    private LocalDate creationDate;
 
 
     private Long createdById;
@@ -43,6 +47,13 @@ public class TotemDTO implements Serializable {
 
     public void setCreationLongitude(Double creationLongitude) {
         this.creationLongitude = creationLongitude;
+    }
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Long getCreatedById() {
@@ -80,6 +91,7 @@ public class TotemDTO implements Serializable {
             "id=" + id +
             ", creationLatitude='" + creationLatitude + "'" +
             ", creationLongitude='" + creationLongitude + "'" +
+            ", creationDate='" + creationDate + "'" +
             '}';
     }
 }
