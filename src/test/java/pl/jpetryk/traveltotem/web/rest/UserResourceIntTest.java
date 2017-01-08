@@ -39,6 +39,8 @@ public class UserResourceIntTest {
 
     private MockMvc restUserMockMvc;
 
+    private static int usersCreatedCounter = 0;
+
     /**
      * Create a User.
      *
@@ -46,13 +48,14 @@ public class UserResourceIntTest {
      * if they test an entity which has a required relationship to the User entity.
      */
     public static User createEntity(EntityManager em) {
+        String login = "test" + usersCreatedCounter++;
         User user = new User();
-        user.setLogin("test");
+        user.setLogin(login);
         user.setPassword(RandomStringUtils.random(60));
         user.setActivated(true);
-        user.setEmail("test@test.com");
-        user.setFirstName("test");
-        user.setLastName("test");
+        user.setEmail(login + "@test.com");
+        user.setFirstName(login);
+        user.setLastName(login);
         user.setLangKey("en");
         em.persist(user);
         em.flush();

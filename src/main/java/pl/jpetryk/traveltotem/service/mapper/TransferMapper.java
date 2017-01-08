@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Mapper for the entity Transfer and its DTO TransferDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class, UserMapper.class, })
+@Mapper(componentModel = "spring", uses = {UserMapper.class, TotemMapper.class})
 public interface TransferMapper {
 
     @Mapping(source = "fromUser.id", target = "fromUserId")
