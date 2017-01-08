@@ -1,5 +1,6 @@
 package pl.jpetryk.traveltotem.config.apidoc;
 
+import org.springframework.web.context.request.async.DeferredResult;
 import pl.jpetryk.traveltotem.config.Constants;
 import pl.jpetryk.traveltotem.config.JHipsterProperties;
 
@@ -62,6 +63,7 @@ public class SwaggerConfiguration {
             .apiInfo(apiInfo)
             .forCodeGeneration(true)
             .genericModelSubstitutes(ResponseEntity.class)
+            .genericModelSubstitutes(DeferredResult.class)
             .select()
             .paths(regex(DEFAULT_INCLUDE_PATTERN))
             .build();
