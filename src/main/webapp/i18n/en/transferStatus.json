@@ -1,0 +1,10 @@
+{
+    "traveltotemApp": {
+        "TransferStatus" : {
+            "null": "",
+            "NEW": "NEW",
+            "COMPLETED": "COMPLETED",
+            "RECALLED": "RECALLED"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "traveltotemApp": {
+        "transfer" : {
+            "home": {
+                "title": "Transfers",
+                "createLabel": "Create a new Transfer",
+                "createOrEditLabel": "Create or edit a Transfer",
+                "search": "Search for Transfer"
+            },
+            "created": "A new Transfer is created with identifier {{ param }}",
+            "updated": "A Transfer is updated with identifier {{ param }}",
+            "deleted": "A Transfer is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Transfer {{ id }}?"
+            },
+            "detail": {
+                "title": "Transfer"
+            },
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "status": "Status",
+            "date": "Date",
+            "fromUser": "From User",
+            "toUser": "To User",
+            "totem": "Totem"
+        }
+    }
+}
