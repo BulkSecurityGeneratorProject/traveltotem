@@ -1,5 +1,6 @@
 package pl.jpetryk.traveltotem.repository;
 
+import org.springframework.data.repository.query.Param;
 import pl.jpetryk.traveltotem.domain.Transfer;
 
 import org.springframework.data.jpa.repository.*;
@@ -18,5 +19,6 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     @Query("select transfer from Transfer transfer where transfer.toUser.login = ?#{principal.username}")
     List<Transfer> findByToUserIsCurrentUser();
 
-    List<Transfer> findByTotemIdOrderByIdAsc(Long totemId);
+    @Query("select transfer from Transfer transfer where transfer.totem.id = :totemId and transfer.status <> 'RECALLED' order by transfer.id asc")
+    List<Transfer> findNotRecalledByTotemIdOrderByIdAsc(@Param("totemId") Long totemId);
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.jpetryk.traveltotem.TraveltotemApp;
 import pl.jpetryk.traveltotem.domain.Totem;
 import pl.jpetryk.traveltotem.domain.Transfer;
+import pl.jpetryk.traveltotem.domain.enumeration.TransferStatus;
 import pl.jpetryk.traveltotem.repository.TotemRepository;
 import pl.jpetryk.traveltotem.repository.TransferRepository;
 import pl.jpetryk.traveltotem.web.rest.TotemResourceIntTest;
@@ -68,6 +69,16 @@ public class DistanceCalculatorServiceTest {
         transferRepository.save(prepareTransfer(totemWithMultipleTransfers, 52.2398671, 20.9977881));
         transferRepository.save(prepareTransfer(totemWithMultipleTransfers, 50.0605377, 19.9375606));
         assertThat(distanceCalculatorService.calculateDistance(totemWithMultipleTransfers.getId())).isCloseTo(BigDecimal.valueOf(921), Percentage.withPercentage(1));
+    }
+
+    @Test
+    public void calculateDistanceWithMultipleTransfersAndOneRecalled() throws Exception {
+        Totem totemWithMultipleTransfers = prepareTotem(51.109558, 17.03207); // wroclaw city hall
+        totemWithMultipleTransfers = totemRepository.save(totemWithMultipleTransfers);
+        transferRepository.save(prepareTransfer(totemWithMultipleTransfers, 50.717561, 23.252542));
+        transferRepository.save(prepareTransfer(totemWithMultipleTransfers, 52.2398671, 20.9977881).status(TransferStatus.RECALLED));
+        transferRepository.save(prepareTransfer(totemWithMultipleTransfers, 50.0605377, 19.9375606));
+        assertThat(distanceCalculatorService.calculateDistance(totemWithMultipleTransfers.getId())).isCloseTo(BigDecimal.valueOf(684), Percentage.withPercentage(1));
     }
 
     private Transfer prepareTransfer(Totem totemWithOneTransfer, double latitude, double longitude) {

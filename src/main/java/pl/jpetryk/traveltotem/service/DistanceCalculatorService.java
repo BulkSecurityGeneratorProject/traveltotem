@@ -23,7 +23,7 @@ public class DistanceCalculatorService {
     private TotemRepository totemRepository;
 
     public BigDecimal calculateDistance(Long totemId) {
-        List<Transfer> totemTransfers = transferRepository.findByTotemIdOrderByIdAsc(totemId);
+        List<Transfer> totemTransfers = transferRepository.findNotRecalledByTotemIdOrderByIdAsc(totemId);
         if (totemTransfers.isEmpty()) {
             return BigDecimal.ZERO;
         } else {
