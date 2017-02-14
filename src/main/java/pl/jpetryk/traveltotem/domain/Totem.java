@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -36,16 +37,13 @@ public class Totem implements Serializable {
     private LocalDate creationDate;
 
     @NotNull
-    @Column(name = "distance_travelled", nullable = false)
-    private Double distanceTravelled;
+    @DecimalMin(value = "0")
+    @Column(name = "distance_travelled", precision=10, scale=2, nullable = false)
+    private BigDecimal distanceTravelled;
 
     @ManyToOne
     @NotNull
     private User createdBy;
-
-    public Totem() {
-        distanceTravelled = 0d;
-    }
 
     public Long getId() {
         return id;
@@ -94,16 +92,16 @@ public class Totem implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public Double getDistanceTravelled() {
+    public BigDecimal getDistanceTravelled() {
         return distanceTravelled;
     }
 
-    public Totem distanceTravelled(Double distanceTravelled) {
+    public Totem distanceTravelled(BigDecimal distanceTravelled) {
         this.distanceTravelled = distanceTravelled;
         return this;
     }
 
-    public void setDistanceTravelled(Double distanceTravelled) {
+    public void setDistanceTravelled(BigDecimal distanceTravelled) {
         this.distanceTravelled = distanceTravelled;
     }
 

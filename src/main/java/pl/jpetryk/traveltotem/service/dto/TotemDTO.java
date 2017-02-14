@@ -3,6 +3,7 @@ package pl.jpetryk.traveltotem.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -25,7 +26,8 @@ public class TotemDTO implements Serializable {
     private LocalDate creationDate;
 
     @NotNull
-    private Double distanceTravelled;
+    @DecimalMin(value = "0")
+    private BigDecimal distanceTravelled;
 
 
     private Long createdById;
@@ -58,11 +60,11 @@ public class TotemDTO implements Serializable {
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
-    public Double getDistanceTravelled() {
+    public BigDecimal getDistanceTravelled() {
         return distanceTravelled;
     }
 
-    public void setDistanceTravelled(Double distanceTravelled) {
+    public void setDistanceTravelled(BigDecimal distanceTravelled) {
         this.distanceTravelled = distanceTravelled;
     }
 

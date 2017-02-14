@@ -27,6 +27,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,8 +53,8 @@ public class TotemResourceIntTest {
     private static final LocalDate DEFAULT_CREATION_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_CREATION_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Double DEFAULT_DISTANCE_TRAVELLED = 1D;
-    private static final Double UPDATED_DISTANCE_TRAVELLED = 2D;
+    private static final BigDecimal DEFAULT_DISTANCE_TRAVELLED = new BigDecimal(0);
+    private static final BigDecimal UPDATED_DISTANCE_TRAVELLED = new BigDecimal(1);
 
     @Inject
     private TotemRepository totemRepository;
@@ -246,7 +247,7 @@ public class TotemResourceIntTest {
             .andExpect(jsonPath("$.[*].creationLatitude").value(hasItem(DEFAULT_CREATION_LATITUDE.doubleValue())))
             .andExpect(jsonPath("$.[*].creationLongitude").value(hasItem(DEFAULT_CREATION_LONGITUDE.doubleValue())))
             .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())))
-            .andExpect(jsonPath("$.[*].distanceTravelled").value(hasItem(DEFAULT_DISTANCE_TRAVELLED.doubleValue())));
+            .andExpect(jsonPath("$.[*].distanceTravelled").value(hasItem(DEFAULT_DISTANCE_TRAVELLED.intValue())));
     }
 
     @Test
@@ -263,7 +264,7 @@ public class TotemResourceIntTest {
             .andExpect(jsonPath("$.creationLatitude").value(DEFAULT_CREATION_LATITUDE.doubleValue()))
             .andExpect(jsonPath("$.creationLongitude").value(DEFAULT_CREATION_LONGITUDE.doubleValue()))
             .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()))
-            .andExpect(jsonPath("$.distanceTravelled").value(DEFAULT_DISTANCE_TRAVELLED.doubleValue()));
+            .andExpect(jsonPath("$.distanceTravelled").value(DEFAULT_DISTANCE_TRAVELLED.intValue()));
     }
 
     @Test

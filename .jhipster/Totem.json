@@ -36,10 +36,12 @@
         },
         {
             "fieldName": "distanceTravelled",
-            "fieldType": "Double",
+            "fieldType": "BigDecimal",
             "fieldValidateRules": [
-                "required"
-            ]
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
         }
     ],
     "changelogDate": "20170108142735",
