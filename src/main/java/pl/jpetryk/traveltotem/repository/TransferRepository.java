@@ -18,4 +18,5 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     @Query("select transfer from Transfer transfer where transfer.toUser.login = ?#{principal.username}")
     List<Transfer> findByToUserIsCurrentUser();
 
+    List<Transfer> findByTotemIdOrderByIdAsc(Long totemId);
 }
