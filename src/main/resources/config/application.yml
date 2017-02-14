@@ -71,7 +71,7 @@ jhipster:
     swagger:
         title: traveltotem API
         description: traveltotem API documentation
-        version: 0.0.1
+        version: 0.0.2
         termsOfServiceUrl:
         contactName:
         contactUrl:
