@@ -61,6 +61,22 @@
                 </p>
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="traveltotemApp.totem.distanceTravelled" for="field_distanceTravelled">Distance Travelled</label>
+            <input type="number" class="form-control" name="distanceTravelled" id="field_distanceTravelled"
+                    ng-model="vm.totem.distanceTravelled"
+                    required />
+            <div ng-show="editForm.distanceTravelled.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.distanceTravelled.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.distanceTravelled.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
 
         <div class="form-group">
             <label data-translate="traveltotemApp.totem.createdBy" for="field_createdBy">Created By</label>

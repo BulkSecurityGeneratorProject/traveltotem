@@ -24,6 +24,9 @@ public class TotemDTO implements Serializable {
     @NotNull
     private LocalDate creationDate;
 
+    @NotNull
+    private Double distanceTravelled;
+
 
     private Long createdById;
     
@@ -54,6 +57,13 @@ public class TotemDTO implements Serializable {
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
+    }
+    public Double getDistanceTravelled() {
+        return distanceTravelled;
+    }
+
+    public void setDistanceTravelled(Double distanceTravelled) {
+        this.distanceTravelled = distanceTravelled;
     }
 
     public Long getCreatedById() {
@@ -92,6 +102,7 @@ public class TotemDTO implements Serializable {
             ", creationLatitude='" + creationLatitude + "'" +
             ", creationLongitude='" + creationLongitude + "'" +
             ", creationDate='" + creationDate + "'" +
+            ", distanceTravelled='" + distanceTravelled + "'" +
             '}';
     }
 }

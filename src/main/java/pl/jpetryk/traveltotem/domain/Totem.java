@@ -35,6 +35,10 @@ public class Totem implements Serializable {
     @Column(name = "creation_date", nullable = false)
     private LocalDate creationDate;
 
+    @NotNull
+    @Column(name = "distance_travelled", nullable = false)
+    private Double distanceTravelled;
+
     @ManyToOne
     @NotNull
     private User createdBy;
@@ -86,6 +90,19 @@ public class Totem implements Serializable {
         this.creationDate = creationDate;
     }
 
+    public Double getDistanceTravelled() {
+        return distanceTravelled;
+    }
+
+    public Totem distanceTravelled(Double distanceTravelled) {
+        this.distanceTravelled = distanceTravelled;
+        return this;
+    }
+
+    public void setDistanceTravelled(Double distanceTravelled) {
+        this.distanceTravelled = distanceTravelled;
+    }
+
     public User getCreatedBy() {
         return createdBy;
     }
@@ -126,6 +143,7 @@ public class Totem implements Serializable {
             ", creationLatitude='" + creationLatitude + "'" +
             ", creationLongitude='" + creationLongitude + "'" +
             ", creationDate='" + creationDate + "'" +
+            ", distanceTravelled='" + distanceTravelled + "'" +
             '}';
     }
 }

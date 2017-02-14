@@ -22,6 +22,7 @@
                     <th jh-sort-by="creationLatitude"><span data-translate="traveltotemApp.totem.creationLatitude">Creation Latitude</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="creationLongitude"><span data-translate="traveltotemApp.totem.creationLongitude">Creation Longitude</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="creationDate"><span data-translate="traveltotemApp.totem.creationDate">Creation Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="distanceTravelled"><span data-translate="traveltotemApp.totem.distanceTravelled">Distance Travelled</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="createdById"><span data-translate="traveltotemApp.totem.createdBy">Created By</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -32,6 +33,7 @@
                     <td>{{totem.creationLatitude}}</td>
                     <td>{{totem.creationLongitude}}</td>
                         <td>{{totem.creationDate | date:'mediumDate'}}</td>
+                    <td>{{totem.distanceTravelled}}</td>
                     <td>
                         {{totem.createdById}}
                     </td>

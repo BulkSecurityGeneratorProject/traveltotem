@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+   <changeSet author="jpetryk (generated)" id="1487097999043-1">
+      <addColumn tableName="totem">
+         <column name="distance_travelled" type="double precision">
+            <constraints nullable="false"/>
+         </column>
+      </addColumn>
+   </changeSet>
+   <changeSet author="jpetryk (generated)" id="1487097999043-2">
+      <dropNotNullConstraint columnDataType="bigint"
+                             columnName="created_by_id"
+                             tableName="totem"/>
+   </changeSet>
+   <changeSet author="jpetryk (generated)" id="1487097999043-3">
+      <dropNotNullConstraint columnDataType="bigint"
+                             columnName="from_user_id"
+                             tableName="transfer"/>
+   </changeSet>
+   <changeSet author="jpetryk (generated)" id="1487097999043-4">
+      <dropNotNullConstraint columnDataType="bigint"
+                             columnName="to_user_id"
+                             tableName="transfer"/>
+   </changeSet>
+   <changeSet author="jpetryk (generated)" id="1487097999043-5">
+      <dropNotNullConstraint columnDataType="bigint" columnName="totem_id" tableName="transfer"/>
+   </changeSet>
+</databaseChangeLog>

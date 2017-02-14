@@ -52,6 +52,9 @@ public class TotemResourceIntTest {
     private static final LocalDate DEFAULT_CREATION_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_CREATION_DATE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Double DEFAULT_DISTANCE_TRAVELLED = 1D;
+    private static final Double UPDATED_DISTANCE_TRAVELLED = 2D;
+
     @Inject
     private TotemRepository totemRepository;
 
@@ -94,7 +97,8 @@ public class TotemResourceIntTest {
         Totem totem = new Totem()
                 .creationLatitude(DEFAULT_CREATION_LATITUDE)
                 .creationLongitude(DEFAULT_CREATION_LONGITUDE)
-                .creationDate(DEFAULT_CREATION_DATE);
+                .creationDate(DEFAULT_CREATION_DATE)
+                .distanceTravelled(DEFAULT_DISTANCE_TRAVELLED);
         // Add required entity
         User createdBy = UserResourceIntTest.createEntity(em);
         em.persist(createdBy);
@@ -128,6 +132,7 @@ public class TotemResourceIntTest {
         assertThat(testTotem.getCreationLatitude()).isEqualTo(DEFAULT_CREATION_LATITUDE);
         assertThat(testTotem.getCreationLongitude()).isEqualTo(DEFAULT_CREATION_LONGITUDE);
         assertThat(testTotem.getCreationDate()).isEqualTo(DEFAULT_CREATION_DATE);
+        assertThat(testTotem.getDistanceTravelled()).isEqualTo(DEFAULT_DISTANCE_TRAVELLED);
     }
 
     @Test
@@ -210,6 +215,25 @@ public class TotemResourceIntTest {
 
     @Test
     @Transactional
+    public void checkDistanceTravelledIsRequired() throws Exception {
+        int databaseSizeBeforeTest = totemRepository.findAll().size();
+        // set the field null
+        totem.setDistanceTravelled(null);
+
+        // Create the Totem, which fails.
+        TotemDTO totemDTO = totemMapper.totemToTotemDTO(totem);
+
+        restTotemMockMvc.perform(post("/api/totems")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(totemDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Totem> totemList = totemRepository.findAll();
+        assertThat(totemList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTotems() throws Exception {
         // Initialize the database
         totemRepository.saveAndFlush(totem);
@@ -221,7 +245,8 @@ public class TotemResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(totem.getId().intValue())))
             .andExpect(jsonPath("$.[*].creationLatitude").value(hasItem(DEFAULT_CREATION_LATITUDE.doubleValue())))
             .andExpect(jsonPath("$.[*].creationLongitude").value(hasItem(DEFAULT_CREATION_LONGITUDE.doubleValue())))
-            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())));
+            .andExpect(jsonPath("$.[*].creationDate").value(hasItem(DEFAULT_CREATION_DATE.toString())))
+            .andExpect(jsonPath("$.[*].distanceTravelled").value(hasItem(DEFAULT_DISTANCE_TRAVELLED.doubleValue())));
     }
 
     @Test
@@ -237,7 +262,8 @@ public class TotemResourceIntTest {
             .andExpect(jsonPath("$.id").value(totem.getId().intValue()))
             .andExpect(jsonPath("$.creationLatitude").value(DEFAULT_CREATION_LATITUDE.doubleValue()))
             .andExpect(jsonPath("$.creationLongitude").value(DEFAULT_CREATION_LONGITUDE.doubleValue()))
-            .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()));
+            .andExpect(jsonPath("$.creationDate").value(DEFAULT_CREATION_DATE.toString()))
+            .andExpect(jsonPath("$.distanceTravelled").value(DEFAULT_DISTANCE_TRAVELLED.doubleValue()));
     }
 
     @Test
@@ -260,7 +286,8 @@ public class TotemResourceIntTest {
         updatedTotem
                 .creationLatitude(UPDATED_CREATION_LATITUDE)
                 .creationLongitude(UPDATED_CREATION_LONGITUDE)
-                .creationDate(UPDATED_CREATION_DATE);
+                .creationDate(UPDATED_CREATION_DATE)
+                .distanceTravelled(UPDATED_DISTANCE_TRAVELLED);
         TotemDTO totemDTO = totemMapper.totemToTotemDTO(updatedTotem);
 
         restTotemMockMvc.perform(put("/api/totems")
@@ -275,6 +302,7 @@ public class TotemResourceIntTest {
         assertThat(testTotem.getCreationLatitude()).isEqualTo(UPDATED_CREATION_LATITUDE);
         assertThat(testTotem.getCreationLongitude()).isEqualTo(UPDATED_CREATION_LONGITUDE);
         assertThat(testTotem.getCreationDate()).isEqualTo(UPDATED_CREATION_DATE);
+        assertThat(testTotem.getDistanceTravelled()).isEqualTo(UPDATED_DISTANCE_TRAVELLED);
     }
 
     @Test

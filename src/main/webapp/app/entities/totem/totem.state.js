@@ -107,6 +107,7 @@
                                 creationLatitude: null,
                                 creationLongitude: null,
                                 creationDate: null,
+                                distanceTravelled: null,
                                 id: null
                             };
                         }

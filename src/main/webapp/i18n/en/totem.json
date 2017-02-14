@@ -19,6 +19,7 @@
             "creationLatitude": "Creation Latitude",
             "creationLongitude": "Creation Longitude",
             "creationDate": "Creation Date",
+            "distanceTravelled": "Distance Travelled",
             "createdBy": "Created By"
         }
     }
