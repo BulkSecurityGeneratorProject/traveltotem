@@ -43,6 +43,10 @@ public class Totem implements Serializable {
     @NotNull
     private User createdBy;
 
+    public Totem() {
+        distanceTravelled = 0d;
+    }
+
     public Long getId() {
         return id;
     }
