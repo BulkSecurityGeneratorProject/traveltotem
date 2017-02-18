@@ -5,7 +5,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
    <changeSet author="jpetryk (generated)" id="1487097999043-1">
       <addColumn tableName="totem">
-         <column name="distance_travelled" type="double precision">
+         <column name="distance_travelled" type="decimal">
             <constraints nullable="false"/>
          </column>
       </addColumn>

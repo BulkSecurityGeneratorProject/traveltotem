@@ -11,6 +11,5 @@
     <include file="classpath:config/liquibase/changelog/20170108142735_added_entity_constraints_Totem.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170108143240_added_entity_constraints_Transfer.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170214184630_changelog.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170214203442_changelog.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
