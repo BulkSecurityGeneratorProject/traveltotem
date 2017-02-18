@@ -1,7 +1,6 @@
 ######################
 # Project Specific
 ######################
-/src/main/webapp/content/css/main.css
 /target/www/**
 
 ######################
@@ -141,3 +140,8 @@ Desktop.ini
 # bower_components
 ######################
 /src/main/webapp/bower_components
+
+######################
+# compiled css
+######################
+/src/main/webapp/content/css
