@@ -6,7 +6,7 @@
    <changeSet author="jpetryk (generated)" id="1487104489121-1">
       <modifyDataType columnName="distance_travelled"
                       tableName="totem"
-                      schemaName="public"
+                      schemaName="traveltotem"
                       newDataType="decimal"/>
    </changeSet>
 </databaseChangeLog>
