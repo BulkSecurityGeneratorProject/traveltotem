@@ -35,6 +35,14 @@
             },
             "language": "Language"
         },
+        "sidebar": {
+            "dashboard" : "Dashboard",
+            "totem" : {
+                "yours" : "Your totems",
+                "transferred" : "Totems transferred by you"
+            },
+            "leaderboard" : "Leaderboard"
+        },
         "form": {
             "username": "Username",
             "username.placeholder": "Your username",

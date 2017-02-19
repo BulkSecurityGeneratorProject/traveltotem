@@ -20,12 +20,9 @@
                 </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                 <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown dropdown>
-                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
+                    <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu" has-authority="ROLE_ADMIN">
                         <span>
-                            <span class="hidden-sm" data-translate="global.menu.entities.main">
-                                Entities
-                            </span>
-                            <b class="caret"></b>
+                            <i class="material-icons">content_copy</i>
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
@@ -76,7 +73,8 @@
                         </li>
                     </ul>
                 </li>
-                <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown dropdown>
+                <li ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_ADMIN"
+                    uib-dropdown dropdown>
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                         <span>
                             <i class="material-icons">work</i>
@@ -130,7 +128,8 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu ng-if="languageVm.languages.length > 1">
                         <li active-menu="{{language}}" ng-repeat="language in languageVm.languages">
-                            <a href="" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</a>
+                            <a href="" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language |
+                                findLanguageFromKey}}</a>
                         </li>
                     </ul>
                 </li>
