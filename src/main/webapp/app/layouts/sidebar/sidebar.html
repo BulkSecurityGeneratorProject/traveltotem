@@ -1,38 +1,31 @@
-<nav>
-    <ul class="nav">
-        <li ui-sref-active="active">
-            <a ui-sref="dashboard">
-                <i class="material-icons">dashboard</i>
-                <span data-translate="global.sidebar.dashboard">Dashboard</span>
-            </a>
-        </li>
-        <li ui-sref-active="active">
-            <a ui-sref="dashboard">
-                <!--<img src="../../../content/icons/totem.svg" class="icon"></img>-->
-                <span data-translate="global.sidebar.totem.yours">Your totems</span>
-            </a>
-            <ul>
-                <li>
-                    <a ui-sref="dashboard">
-                        <img src="../../../content/icons/totem.svg" type="image/svg+xml" class="icon"></img>
-                        <span data-translate="global.sidebar.totem.yours">Your totems</span>
-                    </a>
-                </li>
+<div ng-if="vm.isAuthenticated()" class="well">
+    <nav>
+        <ul class="nav">
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard">
+                    <i class="material-icons">dashboard</i>
+                    <span data-translate="global.sidebar.dashboard">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="dashboard">
+                    <img src="../../../content/icons/totem-teal.svg" type="image/svg+xml" class="icon"></img>
+                    <span data-translate="global.sidebar.totem.yours">Your totems</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard">
+                    <i class="material-icons">send</i>
+                    <span data-translate="global.sidebar.totem.transferred">Totems transferred by you</span>
+                </a>
 
-                <li ui-sref-active="active">
-                    <a ui-sref="dashboard">
-                        <i class="material-icons">send</i>
-                        <span data-translate="global.sidebar.totem.transferred">Totems transferred by you</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-    <li ui-sref-active="active">
-        <a ui-sref="dashboard">
-            <i class="material-icons">star_half</i>
-            <span data-translate="global.sidebar.leaderboard">Leaderboard</span>
-        </a>
-    </li>
-    </ul>
-</nav>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="dashboard">
+                    <i class="material-icons">star_half</i>
+                    <span data-translate="global.sidebar.leaderboard">Leaderboard</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
